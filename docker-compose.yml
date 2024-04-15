@@ -1,0 +1,23 @@
+services:
+  demo3:
+    build: .
+    image: demo3
+    container_name: demodemo
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/TestTaskWallet
+      - SPRING_DATASOURCE_USERNAME=testtask
+      - SPRING_DATASOURCE_PASSWORD=testtask
+
+  db:
+    image: postgres:15
+    container_name: db
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=TestTaskWallet
+      - POSTGRES_USER=testtask
+      - POSTGRES_PASSWORD=testtask
